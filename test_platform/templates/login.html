@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+<body>
+    <h1>登陆页</h1>
+    <div>
+        <form method="post">
+            <div>
+                {%csrf_token%}
+                <div id="username"><label>用户名:</label><input type="text" name="username"></div>
+                <div id="password"><label>密码:</label><input type="text" name="password"></div>
+                <button type="submit">登陆</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
