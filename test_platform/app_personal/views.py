@@ -14,7 +14,7 @@ def loginViews(request):
         password = request.POST.get("password", "")
         if username == "" or password == "":
            return render(request,"login.html",{
-               " ":"用户名或密码为空!"
+               "error":"用户名或密码为空!"
            })
 
         user = auth.authenticate(username=username,password=password)
@@ -22,22 +22,18 @@ def loginViews(request):
 
         if user is not None:
             auth.login(request,user) #记录用户的登陆状态 1
-            return HttpResponseRedirect("/manage/")
+
+            response = HttpResponseRedirect("/manage/project/")
+            response.set_cookie('user',username,3600) #设置Cookies过时时间，同时Cookies中记录username
+            return response
         else:
             return render(request,"login.html",{
                 "error":"用户名或密码错误!"
             })
 
-@login_required #2
-def manage(request):
-    """
-    这是一个接口管理的视图函数
-    :param request: 
-    :return: 
-    """
-    return render(request, "manage.html")
 
-
-
+@login_required
 def logout(request):
-    pass
+    # 退出，清空掉session
+    auth.logout(request)
+    return HttpResponseRedirect("/login/")

@@ -1,0 +1,83 @@
+{% extends "manage.html" %}
+{% block manage %}
+<main class="content">
+				<div class="container-fluid p-0">
+					<div class="row">
+					</div>
+
+					<div class="row">
+
+					</div>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<div class="card-actions float-right">
+										<div class="dropdown show">
+											<a href="#" data-toggle="dropdown" data-display="static">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal align-middle"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+            </a>
+
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" href="#">Action</a>
+												<a class="dropdown-item" href="#">Another action</a>
+												<a class="dropdown-item" href="#">Something else here</a>
+											</div>
+										</div>
+									</div>
+									<h5 class="card-title mb-0">项目编辑</h5>
+								</div>
+                                <div style="width: 600px;margin-left: 20px;padding-bottom: 20px;">
+                                    <form action="/manage/project_edit/{{ pid }}/" method="post">
+                                    <label for="id_name">名称:</label>
+                                        {{ forms.name }}
+                                    <label for="id_describe">描述:</label>
+                                        {{ forms.describe }}
+                                    <label for="id_status">状态:</label>
+                                        {{ forms.status }}
+                                    {% csrf_token %}
+                                    <br>
+                                    <input type="submit" class="btn btn-primary">
+                                </form>
+                                </div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+
+<style>
+input[name="name"] {
+    display: block;
+    width: 100%;
+    height: calc(1.8125rem + 2px);
+    padding: .25rem .7rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+textarea[name="describe"] {
+    display: block;
+    width: 100%;
+    padding: .25rem .7rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+</style>
+{% endblock %}
