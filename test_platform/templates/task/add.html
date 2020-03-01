@@ -1,0 +1,159 @@
+{% extends "manage.html" %}
+{% block manage %}
+    <main class="content">
+				<div class="container-fluid p-0">
+					<div class="row">
+					</div>
+
+					<div class="row">
+
+					</div>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<div class="card-actions float-right">
+										<div class="dropdown show">
+											<a href="#" data-toggle="dropdown" data-display="static">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal align-middle"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+            </a>
+
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" href="#">Action</a>
+												<a class="dropdown-item" href="#">Another action</a>
+												<a class="dropdown-item" href="#">Something else here</a>
+											</div>
+										</div>
+									</div>
+									<h5 class="card-title mb-0">创建任务</h5>
+								</div>
+                                <div style="width: 600px;margin-left: 20px;">
+                                    <!-- URL -->
+                                    <div >
+                                        <label for="task_name" class="label-new">名称:</label>
+                                        <input class="form-control form-control-new" id="task_name"/>
+                                    </div>
+                                    <!-- 描述 -->
+                                     <div style="margin-top: 30px; margin-bottom: 30px">
+                                        <p>描述：</p>
+                                        <textarea id="task_desc" class="form-control" rows="10" name=textarea style="height: 100px"></textarea>
+                                    </div>
+                                    <!-- 用例结构-->
+                                    <div class="card" style="width: auto;">
+                                      <div class="card-body">
+                                        <ul id="treeDemo" class="ztree"></ul>
+                                      </div>
+                                    </div>
+                                    <!-- 创建Button-->
+                                    <button type="submit" onclick="add_task()" class="btn btn-primary">创建</button>
+
+                                </div>
+
+{#								<div id="datatables-dashboard-traffic_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="datatables-dashboard-traffic" class="table table-striped my-0 dataTable no-footer" role="grid" aria-describedby="datatables-dashboard-traffic_info">#}
+{#								#}
+{##}
+{#                                    <thead>#}
+{#										<tr role="row">#}
+{#                                            <th>id</th>#}
+{#                                            <th>名称</th>#}
+{#                                            <th>状态</th>#}
+{#                                            <th>描述</th>#}
+{#                                            <th>创建时间</th>#}
+{#									</thead>#}
+{#									<tbody>#}
+{##}
+{#                                    </tbody>#}
+{#								</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatables-dashboard-traffic_info" role="status" aria-live="polite">Showing 1 to 8 of 8 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatables-dashboard-traffic_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatables-dashboard-traffic_previous"><a href="#" aria-controls="datatables-dashboard-traffic" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatables-dashboard-traffic" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="datatables-dashboard-traffic_next"><a href="#" aria-controls="datatables-dashboard-traffic" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>#}
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+<script src="https://cdn.bootcss.com/jquery/1.4.2/jquery.js"></script>
+<link href="https://cdn.bootcss.com/zTree.v3/3.5.39/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/zTree.v3/3.5.40/js/jquery.ztree.all.js"></script>
+<script src='/static/js/csrf.js'></script>
+<script type="application/javascript">
+    var zTreeObj;
+    {#// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）#}
+    var zNodes;
+
+    var setting = {
+
+            check: {
+                enable: true,
+                chkStyle:"checkbox"
+            }
+
+        };
+         //页面首次加载
+        $(document).ready(function(){
+            //加载完成立即发送GET请求
+            $.get("/task/case_node/",{},function (resp) {
+                if (resp.code == 10200){
+                    //获取展示数据
+                    zNodes = resp.data;
+                    zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                }
+            });
+
+        });
+
+function add_task() {
+    var taskName = $("#task_name").val();
+    var taskDesc = $("#task_desc").val();
+
+    if (taskName == ""){
+        //前端为空校验
+        window.alert("名称不能为空");
+        return;
+    }
+
+    var zTreeObj = $.fn.zTree.getZTreeObj("treeDemo");
+    var nodes = zTreeObj.getCheckedNodes(true);
+    var cases = new Array();
+
+    for(var index=0;index<nodes.length;index++){
+        if (nodes[index].isParent == false){
+            var caseId = nodes[index].id;
+            cases.push(caseId);
+        }else{
+
+        }
+
+    }
+    if(cases.length === 0){
+        window.alert("请选择需要保存的用例");
+        return 0;
+    }
+    //用例数组 转成 ==> 字符串类型
+    var caseStr = JSON.stringify(cases);
+    $.post("/task/save_task/",{
+        "tid":"0",
+        "name":taskName,
+        "desc":taskDesc,
+        "cases":caseStr
+
+    },function (resp) {
+        if(resp.code == 10200){
+            window.alert("任务创建成功");
+        }else{
+            window.alert(resp.message);
+        }
+    });
+
+
+
+
+
+
+
+
+}
+
+</script>
+{% endblock %}
+
+{#<link rel="stylesheet" href="css/bootstrapStyle/bootstrapStyle.css" type="text/css">#}

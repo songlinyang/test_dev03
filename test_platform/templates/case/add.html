@@ -1,0 +1,257 @@
+{% extends "manage.html" %}
+{% load staticfiles %}
+{% block manage %}
+    <main class="content">
+				<div class="container-fluid p-0">
+					<div class="row">
+					</div>
+
+					<div class="row">
+
+					</div>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card flex-fill">
+								<div class="card-header">
+                                    <h5 class="card-title mb-0">用例添加</h5>
+                                    <!-- URL -->
+                                    <div >
+                                        <label for="urlInput" class="label-new">URL:</label>
+                                        <input class="form-control form-control-new" id="urlInput"/>
+                                    </div>
+                                    <!-- 请求方式 -->
+                                    <div style="margin-top: 10px;">
+                                        <label for="urlmethod">*请求方式:</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="req_method" id="get" value="get" checked>GET
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="req_method" id="post" value="post">POST
+                                        </label>
+
+
+                                    </div>
+
+                                    <!-- header -->
+                                    <div >
+                                        <label for="headerInput" class="label-new">Headers:</label>
+                                        <input value="{}" class="form-control form-control-new" id="headerInput"/>
+                                    </div>
+
+                                    <!-- 请求方式 -->
+                                    <div style="margin-top: 10px;">
+                                        <label for="param_type">*参数类型:</label>
+                                        <label class="radio-inlin"><input type="radio" name="param_type" id="form" value="form" checked>form-data</label>
+                                        <label class="radio-inlin"><input type="radio" name="param_type" id="json" value="json">JSON</label>
+                                    </div>
+
+                                    <!-- 参数 -->
+                                    <div >
+                                        <label for="paramInput" class="label-new">请求体:</label>
+                                        <input value="{}" class="form-control form-control-new" id="paramInput"/>
+                                        <br/>
+                                        <label>说明: 以字典的方式设置参数，如:{"id":1,"name":"名称"}</label>
+                                    </div>
+
+                                    <button onclick="sendFun()" type="button" class="btn btn-primary" style="float:right;">创建</button>
+                                    <!-- 响应结果 -->
+                                     <div style="margin-top: 30px; margin-bottom: 30px">
+                                        <p>返回结果：</p>
+                                        <textarea id="result" class="form-control" rows="10" name=textarea></textarea>
+                                    </div>
+
+                                    <button onclick="assertFun()" type="button" class="btn btn-primary" style="float:right;">断言</button>
+                                    <!-- 断言方式 -->
+                                    <div style="margin-top: 10px;">
+                                        <label for="assert_type">*断言方法:</label>
+                                        <label class="radio-inlin"><input type="radio" name="assert_type" id="include" value="include" checked>包含</label>
+                                        <label class="radio-inlin"><input type="radio" name="assert_type" id="equal" value="equal">相等</label>
+                                    </div>
+                                     <!-- 断言内容 -->
+                                     <div style="margin-top: 30px; margin-bottom: 30px">
+                                        <p>断言：</p>
+                                        <textarea id="assert" class="form-control" rows="10" name=textarea></textarea>
+                                    </div>
+                                    <!--模块联动选择：项目-->
+                                    <div style="width: auto">
+                                    <div class="form-inline" style="width:300px;float:left;">
+                                    <label for="project">项目：</label>
+                                        <select class="form-control" id="selectProject" style="
+                                                            width: 224.388636px;
+                                        ">
+                                        <option value="1">测试项目</option><option value="2">我的新项目2</option><option value="3">我的新项目</option></select>
+                                    </div>
+
+                                    <div class="form-inline">
+                                    <label for="module">模块：</label>
+                                        <select class="form-control" id="selectModule" style="
+                                                width: 224.388636px;">
+                                        <option value="4">测试模块1</option><option value="5">测试模块2</option></select>
+                                    </div>
+                                    </div>
+                                    <!-- 名称 -->
+                                    <div>
+                                        <label for="caseName" class="label-new">名称:</label>
+                                        <input class="form-control form-control-new" id="caseName" style="width: 754.388636px;">
+                                    </div>
+                                    <!-- 保存 -->
+                                    <button onclick="saveFun()" type="button" class="btn btn-primary" style="float:right;">保存</button>
+                                </div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+<script src="/static/js/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/css/jquery.jsonview.css">
+<script src="/static/js/jquery.jsonview.js"></script>
+<link href="/static/css/jsoneditor.css" rel="stylesheet">
+<script src="/static/js/jsoneditor.js"></script>
+<script src='/static/js/csrf.js'></script>
+<script src="/static/js/manage.js"></script>
+<script type="text/javascript">
+
+//设置联动选择下拉项功能
+SelectInit();
+
+function sendFun() {
+    req_url = $("#urlInput").val();
+    req_method = $('input[name="req_method"]:checked').val();
+    req_headers = $("#headerInput").val();
+    req_type = $('input[name="param_type"]:checked').val();
+    req_body = $("#paramInput").val();
+    $.get("/manage/case/send_req/", {
+        req_url: req_url,
+        req_method: req_method,
+        req_headers: req_headers,
+        req_type: req_type,
+        req_body: req_body
+        },
+    function(resp){
+        if (resp.code === 10200){
+            document.querySelector("#result").value = resp.data;
+        }else{
+            window.alert(resp.message);
+        }
+    });
+}
+
+function  assertFun() {
+    var result_text = $("#result").val();
+    var assert_text = $("#assert").val();
+    var assert_type = $('input[name="assert_type"]:checked').val();
+
+
+    if (result_text === "" || assert_text === ""){
+        window.alert("断言的结果不能为空")
+    }
+    $.post("/manage/case/assert_result/",{
+        result_text:result_text,
+        assert_text:assert_text,
+        assert_type:assert_type
+    },function (resp) {
+        window.alert(resp.message);
+    });
+
+}
+
+function saveFun() {
+    //请求
+    var req_url = $("#urlInput").val();
+    var req_method = $('input[name="req_method"]:checked').val();
+    var req_headers = $("#headerInput").val();
+    var req_type = $('input[name="param_type"]:checked').val();
+    var req_body = $("#paramInput").val();
+    //响应&断言
+    var result_text = $("#result").val();
+    var assert_text = $("#assert").val();
+    var assert_type = $('input[name="assert_type"]:checked').val();
+    //模块Id
+    var module_id = $('select[id="selectModule"]').val();
+    var case_name = $('#caseName').val();
+
+
+    $.post("/manage/case/save_case/",{
+        url:req_url,
+        name:case_name,
+        method:req_method,
+        header:req_headers,
+        paramter_type:req_type,
+        paramter_body:req_body,
+        result:result_text,
+        assert_type:assert_type,
+        assert_text:assert_text,
+        module_id:module_id
+
+
+
+    },function (resp) {
+       window.alert(resp.message);
+    });
+}
+</script>
+<style>
+select[name="project"] {
+    display: block;
+    width: 100%;
+    height: calc(1.8125rem + 2px);
+    padding: .25rem .7rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+input[name="name"] {
+    display: block;
+    width: 100%;
+    height: calc(1.8125rem + 2px);
+    padding: .25rem .7rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+textarea[name="describe"] {
+    display: block;
+    width: 100%;
+    padding: .25rem .7rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control-new {
+    float: right;
+    width: 90%;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    margin-right: 5px;
+}
+.label-new{
+    margin-bottom: .5rem;
+    margin-top: .6rem;
+    float:left;
+}
+.option {
+        height: 50px;
+    }
+.div-inline{ display:inline;float: left;}
+</style>
+{% endblock %}

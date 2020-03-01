@@ -1,0 +1,97 @@
+{% extends "manage.html" %}
+{% block head %}
+{#<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">#}
+<script src="/static/js/jquery.slim.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block manage %}
+    <main class="content">
+				<div class="container-fluid p-0">
+					<div class="row">
+					</div>
+
+					<div class="row">
+
+					</div>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card flex-fill">
+								<div class="card-header">
+                                    <button onclick="add_task()" type="button" class="btn btn-primary" style="float:right;">创建</button>
+									<h5 class="card-title mb-0">项目管理</h5>
+								</div>
+									<thead>
+								<div id="datatables-dashboard-traffic_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="datatables-dashboard-traffic" class="table table-striped my-0 dataTable no-footer" role="grid" aria-describedby="datatables-dashboard-traffic_info">
+										<tr role="row">
+                                            <th>id</th>
+                                            <th>name</th>
+                                            <th>errors</th>
+                                            <th>failures</th>
+                                            <th>skipped</th>
+                                            <th>tests</th>
+                                            <th>run time</th>
+                                            <th>create time</th>
+                                            <th>操作</th>
+									</thead>
+									<tbody>
+                                    {% for r in results %}
+                                    <tr>
+                                        <td>{{r.id}}</td>
+                                        <td>{{r.name}}</td>
+                                        <td>{{r.errors}}</td>
+                                        <td>{{r.failures}}</td>
+                                        <td>{{r.skipped}}</td>
+                                        <td>{{r.tests}}</td>
+                                        <td>{{r.run_time}}s</td>
+                                        <td>{{r.create_time | date:'Y-m-d H:i:s'}}</td>
+                                        <td>
+                                         <button onclick="get_log({{ r.id }})" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">详情</button>
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+								</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatables-dashboard-traffic_info" role="status" aria-live="polite">Showing 1 to 8 of 8 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatables-dashboard-traffic_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatables-dashboard-traffic_previous"><a href="#" aria-controls="datatables-dashboard-traffic" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatables-dashboard-traffic" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="datatables-dashboard-traffic_next"><a href="#" aria-controls="datatables-dashboard-traffic" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+							</div>
+						</div>
+
+                      <!-- 模态框（Modal） -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="width: 600px;height: 600px;">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            日志详情
+                                        </h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea id="log" class="form-control" rows="22" name=textarea></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+					</div>
+				</div>
+			</main>
+<script src="/static/js/jquery.min.js"></script>
+<script type="application/javascript">
+function get_log(rid) {
+        var logBorder = $("#log");
+        $.post("/task/get_log/",{
+            "rid":rid
+        },function (resp) {
+            if (resp.code == 10200){
+                logBorder.val(resp.data);
+            }
+        });
+}
+</script>
+{% endblock %}

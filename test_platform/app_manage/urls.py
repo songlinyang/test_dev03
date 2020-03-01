@@ -17,6 +17,6 @@ urlpatterns = [
     #模块管理
     path('module/',module_views.manage),
     path('module_add/',module_views.add_module),
-    path('module_edit/<int:mid>',module_views.edit_module),
-    path('module_del/<int:mid>',module_views.del_module),
+    path('module_edit/<int:mid>/',module_views.edit_module),
+    path('module_del/<int:mid>/',module_views.del_module),
 ]

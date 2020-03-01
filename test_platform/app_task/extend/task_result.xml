@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite errors="1" failures="5" file=".py" name="RunTaskTest-20200301143955" skipped="0" tests="6" time="93.197" timestamp="2020-03-01T14:41:28">
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00001_测试项目_用例1_测试GET请求1" time="12.332" timestamp="2020-03-01T14:40:07">
+			<!--test_run_00001_测试项目_用例1_测试GET请求1-->
+			<failure message="'http://httpbin.org/get?key1=value1&amp;key2=value2' not found in '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;\n&lt;title&gt;405 Method Not Allowed&lt;/title&gt;\n&lt;h1&gt;Method Not Allowed&lt;/h1&gt;\n&lt;p&gt;The method is not allowed for the requested URL.&lt;/p&gt;\n'" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\test_dev03\test_platform\app_task\extend\task_run.py", line 47, in test_run
+    self.assertIn(assert_text,r.text)
+AssertionError: 'http://httpbin.org/get?key1=value1&key2=value2' not found in '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n'
+]]>			</failure>
+			<system-out>
+<![CDATA[请求方法为GET:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>405 Method Not Allowed</title>
+<h1>Method Not Allowed</h1>
+<p>The method is not allowed for the requested URL.</p>
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00002_测试项目_用例1_测试GET请求_update_" time="8.216" timestamp="2020-03-01T14:40:15">
+			<!--test_run_00002_测试项目_用例1_测试GET请求_update_-->
+			<failure message="'http://httpbin.org/get?key1=value1&amp;key2=value2' not found in '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;\n&lt;title&gt;405 Method Not Allowed&lt;/title&gt;\n&lt;h1&gt;Method Not Allowed&lt;/h1&gt;\n&lt;p&gt;The method is not allowed for the requested URL.&lt;/p&gt;\n'" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\test_dev03\test_platform\app_task\extend\task_run.py", line 47, in test_run
+    self.assertIn(assert_text,r.text)
+AssertionError: 'http://httpbin.org/get?key1=value1&key2=value2' not found in '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n'
+]]>			</failure>
+			<system-out>
+<![CDATA[请求方法为GET:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>405 Method Not Allowed</title>
+<h1>Method Not Allowed</h1>
+<p>The method is not allowed for the requested URL.</p>
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00003_测试项目_用例1_测试GET请求_update2_" time="18.404" timestamp="2020-03-01T14:40:34">
+			<!--test_run_00003_测试项目_用例1_测试GET请求_update2_-->
+			<failure message="'http://httpbin.org/get?key1=value1&amp;key2=value2' not found in '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;\n&lt;title&gt;405 Method Not Allowed&lt;/title&gt;\n&lt;h1&gt;Method Not Allowed&lt;/h1&gt;\n&lt;p&gt;The method is not allowed for the requested URL.&lt;/p&gt;\n'" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\test_dev03\test_platform\app_task\extend\task_run.py", line 47, in test_run
+    self.assertIn(assert_text,r.text)
+AssertionError: 'http://httpbin.org/get?key1=value1&key2=value2' not found in '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n'
+]]>			</failure>
+			<system-out>
+<![CDATA[请求方法为GET:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>405 Method Not Allowed</title>
+<h1>Method Not Allowed</h1>
+<p>The method is not allowed for the requested URL.</p>
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00004_测试项目_用例1_测试GET请求2" time="49.194" timestamp="2020-03-01T14:41:23">
+			<!--test_run_00004_测试项目_用例1_测试GET请求2-->
+			<failure message="'http://httpbin.org/get?key1=value1&amp;key2=value2' not found in '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;\n&lt;title&gt;405 Method Not Allowed&lt;/title&gt;\n&lt;h1&gt;Method Not Allowed&lt;/h1&gt;\n&lt;p&gt;The method is not allowed for the requested URL.&lt;/p&gt;\n'" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\test_dev03\test_platform\app_task\extend\task_run.py", line 47, in test_run
+    self.assertIn(assert_text,r.text)
+AssertionError: 'http://httpbin.org/get?key1=value1&key2=value2' not found in '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n'
+]]>			</failure>
+			<system-out>
+<![CDATA[请求方法为GET:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>405 Method Not Allowed</title>
+<h1>Method Not Allowed</h1>
+<p>The method is not allowed for the requested URL.</p>
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00005_测试项目_用例11_测试GET请求2" time="4.040" timestamp="2020-03-01T14:41:27">
+			<!--test_run_00005_测试项目_用例11_测试GET请求2-->
+			<failure message="'http://httpbin.org/get?key1=value1&amp;key2=value2&amp;key2=value3' not found in '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;\n&lt;title&gt;405 Method Not Allowed&lt;/title&gt;\n&lt;h1&gt;Method Not Allowed&lt;/h1&gt;\n&lt;p&gt;The method is not allowed for the requested URL.&lt;/p&gt;\n'" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\test_dev03\test_platform\app_task\extend\task_run.py", line 47, in test_run
+    self.assertIn(assert_text,r.text)
+AssertionError: 'http://httpbin.org/get?key1=value1&key2=value2&key2=value3' not found in '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n'
+]]>			</failure>
+			<system-out>
+<![CDATA[请求方法为GET:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>405 Method Not Allowed</title>
+<h1>Method Not Allowed</h1>
+<p>The method is not allowed for the requested URL.</p>
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00006_测试项目_用例2_简单的GET请求" time="1.011" timestamp="2020-03-01T14:41:28">
+			<!--test_run_00006_测试项目_用例2_简单的GET请求-->
+			<error message="HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000282EDCEB710&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))" type="ConnectionError">
+<![CDATA[Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\connection.py", line 157, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\util\connection.py", line 84, in create_connection
+    raise err
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\util\connection.py", line 74, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\connectionpool.py", line 387, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "c:\users\administrator\appdata\local\programs\python\python37\Lib\http\client.py", line 1229, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "c:\users\administrator\appdata\local\programs\python\python37\Lib\http\client.py", line 1275, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "c:\users\administrator\appdata\local\programs\python\python37\Lib\http\client.py", line 1224, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "c:\users\administrator\appdata\local\programs\python\python37\Lib\http\client.py", line 1016, in _send_output
+    self.send(msg)
+  File "c:\users\administrator\appdata\local\programs\python\python37\Lib\http\client.py", line 956, in send
+    self.connect()
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\connection.py", line 184, in connect
+    conn = self._new_conn()
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\connection.py", line 169, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x00000282EDCEB710>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\urllib3\util\retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000282EDCEB710>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\test_dev03\test_platform\app_task\extend\task_run.py", line 42, in test_run
+    r = requests.post(url=url,headers=header,params=paramter_body)
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\requests\api.py", line 119, in post
+    return request('post', url, data=data, json=json, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\requests\api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\requests\sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\requests\sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000282EDCEB710>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+]]>			</error>
+			<system-out>
+<![CDATA[]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+	</testsuite>
+</testsuites>

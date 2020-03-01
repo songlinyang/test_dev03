@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite  failures="1" file=".py" name="RunTaskTest-20200229183815" skipped="0" tests="5" time="0.239" timestamp="2020-02-29T18:38:15">
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00002_测试项目_用例4_验证登录功能" time="0.038" timestamp="2020-02-29T18:38:15">
+			<!--test_run_00002_测试项目_用例4_验证登录功能-->
+			<system-out>
+<![CDATA[请求方法为POST,参数类型为:form -->{
+  "code": 10200, 
+  "message": "login success"
+}
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00003_测试项目_用例4_用户名或密码错误" time="0.016" timestamp="2020-02-29T18:38:15">
+			<!--test_run_00003_测试项目_用例4_用户名或密码错误-->
+			<system-out>
+<![CDATA[请求方法为POST,参数类型为:form -->{
+  "code": 10104, 
+  "message": "username or password error"
+}
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00004_测试项目_用例4_用户名或密码不能为空" time="0.014" timestamp="2020-02-29T18:38:15">
+			<!--test_run_00004_测试项目_用例4_用户名或密码不能为空-->
+			<system-out>
+<![CDATA[请求方法为POST,参数类型为:form -->{
+  "code": 10103, 
+  "message": "username or passwrord is null"
+}
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00005_测试项目_用例4_登录接口参数错误" time="0.015" timestamp="2020-02-29T18:38:15">
+			<!--test_run_00005_测试项目_用例4_登录接口参数错误-->
+			<system-out>
+<![CDATA[请求方法为POST,参数类型为:form -->{
+  "code": 10102, 
+  "message": "username or passwrord is None"
+}
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+		<testcase classname="RunTaskTest" file="app_task\extend\task_run.py" line="33" name="test_run_00001_测试项目_用例3_获取用户名称" time="0.156" timestamp="2020-02-29T18:38:15">
+			<!--test_run_00001_测试项目_用例3_获取用户名称-->
+			<failure message="'tom' not found in '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;\n&lt;title&gt;405 Method Not Allowed&lt;/title&gt;\n&lt;h1&gt;Method Not Allowed&lt;/h1&gt;\n&lt;p&gt;The method is not allowed for the requested URL.&lt;/p&gt;\n'" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "E:\MY_WORK_ENV\test_dev03\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\MY_WORK_ENV\test_dev03\test_dev03\test_platform\app_task\extend\task_run.py", line 47, in test_run
+    self.assertIn(assert_text,r.text)
+AssertionError: 'tom' not found in '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n'
+]]>			</failure>
+			<system-out>
+<![CDATA[请求方法为GET:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>405 Method Not Allowed</title>
+<h1>Method Not Allowed</h1>
+<p>The method is not allowed for the requested URL.</p>
+
+]]>			</system-out>
+			<system-err>
+<![CDATA[]]>			</system-err>
+		</testcase>
+	</testsuite>
+</testsuites>
